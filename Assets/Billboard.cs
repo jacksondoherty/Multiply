@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Billboard : MonoBehaviour {
 	
 	// Update is called once per frame
