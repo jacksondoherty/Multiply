@@ -16,6 +16,7 @@ public class PlayerController : NetworkBehaviour {
 			Camera.main.transform.position = transform.position
 											- transform.forward * 10
 											+ transform.up * 3;
+			Camera.main.transform.rotation = transform.rotation;
 			Camera.main.transform.parent = transform;
 		}
 
