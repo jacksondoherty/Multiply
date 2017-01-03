@@ -522,9 +522,9 @@ PlayerSettings:
     Game_Performance: 0
     Hub: 0
     Purchasing: 0
-    UNet: 0
+    UNet: 1
     Unity_Ads: 0
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: c2ee16c7-bc7c-43c4-8ba8-20ad8d3015ae
+  projectName: NetworkingTutorial
+  organizationId: jgdoherty23
   cloudEnabled: 0
