@@ -10,6 +10,15 @@ public class PlayerController : NetworkBehaviour {
 
 	public override void OnStartLocalPlayer() {
 		GetComponent<MeshRenderer>().material.color = Color.blue;
+
+		if (isLocalPlayer) {
+			// set position of camera and set as child of this
+			Camera.main.transform.position = transform.position
+											- transform.forward * 10
+											+ transform.up * 3;
+			Camera.main.transform.parent = transform;
+		}
+
 	}
 
 	void Update () {
