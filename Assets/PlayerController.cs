@@ -13,6 +13,7 @@ public class PlayerController : NetworkBehaviour {
 
 	private Vector3 movement;
 	private float turn;
+	bool disableTurn = false;
 
 	public override void OnStartLocalPlayer() {
 		// change character color
@@ -32,10 +33,15 @@ public class PlayerController : NetworkBehaviour {
 		if (isLocalPlayer) {
 			GunControl ();
 			MovementControl ();
-			TurnControl ();
+			if (!disableTurn) {
+				TurnControl ();
+			}
 
-			if (Input.GetKey (KeyCode.C)) {
+			if (Input.GetKeyDown (KeyCode.C)) {
 				Cursor.visible = !Cursor.visible;
+			}
+			if (Input.GetKeyDown (KeyCode.Y)) {
+				disableTurn = !disableTurn;
 			}
 		}
 	}
@@ -49,7 +55,6 @@ public class PlayerController : NetworkBehaviour {
 	void MovementControl() {
 		float horizontal = Input.GetAxisRaw ("Horizontal");
 		float vertical = Input.GetAxisRaw ("Vertical");
-
 		movement.Set(horizontal, 0, vertical);
 		movement = movement.normalized * Time.deltaTime * movementSpeed;
 		transform.Translate(movement);

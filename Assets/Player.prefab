@@ -331,7 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 8
   turnSpeed: 5
-  bulletSpeed: 15
+  bulletSpeed: 30
   bulletPrefab: {fileID: 1000013048851164, guid: 62f657243982f48d5b61ec753a2f96c0,
     type: 2}
   bulletSpawn: {fileID: 4000011107076146}
