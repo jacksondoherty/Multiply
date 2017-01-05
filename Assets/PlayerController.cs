@@ -10,6 +10,8 @@ public class PlayerController : NetworkBehaviour {
 	public float bulletSpeed;
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
+	public GameObject clonePrefab;
+
 
 	private Vector3 movement;
 	private float turn;
@@ -36,6 +38,7 @@ public class PlayerController : NetworkBehaviour {
 			if (!disableTurn) {
 				TurnControl ();
 			}
+			SpawnControl ();
 
 			if (Input.GetKeyDown (KeyCode.C)) {
 				Cursor.visible = !Cursor.visible;
@@ -71,12 +74,27 @@ public class PlayerController : NetworkBehaviour {
 		transform.Rotate (0, turn, 0);
 	}
 
+	void SpawnControl() {
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			CmdSpawnClone ();		
+		}
+	}
+
+	[Command]
+	void CmdSpawnClone() {
+		GameObject clone = (GameObject)Instantiate (clonePrefab, 
+			transform.position, 
+			transform.rotation);
+		CloneController cloneScript = clone.GetComponent<CloneController> ();
+		cloneScript.creator = gameObject;
+		NetworkServer.Spawn (clone);
+	}
+
 	[Command]
 	void CmdFire() {
-		var bullet = (GameObject)Instantiate (
-			bulletPrefab,
-			bulletSpawn.position,
-			bulletSpawn.rotation);
+		var bullet = (GameObject)Instantiate (bulletPrefab,
+												bulletSpawn.position,
+												bulletSpawn.rotation);
 		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
 		NetworkServer.Spawn (bullet);
 

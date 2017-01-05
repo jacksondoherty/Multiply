@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 114613581567870818}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -335,6 +335,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1000013048851164, guid: 62f657243982f48d5b61ec753a2f96c0,
     type: 2}
   bulletSpawn: {fileID: 4000011107076146}
+  clonePrefab: {fileID: 1996588175940270, guid: 3a091331dc87b481d8c7c1cf4b5a6fb8,
+    type: 2}
 --- !u!114 &114000010447474758
 MonoBehaviour:
   m_ObjectHideFlags: 1
