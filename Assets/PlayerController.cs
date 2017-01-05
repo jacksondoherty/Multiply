@@ -18,8 +18,8 @@ public class PlayerController : NetworkBehaviour {
 	bool disableTurn = false;
 
 	public override void OnStartLocalPlayer() {
-		// change character color
-		GetComponent<MeshRenderer>().material.color = Color.blue;
+		// activate circle below player
+		transform.GetChild(0).gameObject.SetActive(true);
 
 		// setup camera
 		Camera.main.transform.position = transform.position
