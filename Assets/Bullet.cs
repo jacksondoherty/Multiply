@@ -3,9 +3,9 @@ using System.Collections;
 
 
 public class Bullet : MonoBehaviour {
-	void OnCollisionEnter(Collision collision)
+	void OnTriggerEnter(Collider other)
 	{
-		var hit = collision.gameObject;
+		var hit = other.gameObject;
 		var health = hit.GetComponent<Health>();
 		if (health != null)
 		{

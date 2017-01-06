@@ -15,8 +15,11 @@ public class CloneController : NetworkBehaviour {
 	private Transform target;
 	private NavMeshAgent nav;
 
-	void Start() {
+	void Awake() {
 		nav = GetComponent<NavMeshAgent> ();
+	}
+
+	void Start() {
 		InvokeRepeating ("CmdFire", 5f, 5f); 
 	}
 	
@@ -28,8 +31,6 @@ public class CloneController : NetworkBehaviour {
 		}
 	}
 
-	// @todo: make target random, either clone or player
-	// check if clone's creator is same or if is creator
 	void FindTarget() {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
 		bool targetFound = false;

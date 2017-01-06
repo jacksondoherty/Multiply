@@ -12,40 +12,51 @@ public class PlayerController : NetworkBehaviour {
 	public Transform bulletSpawn;
 	public GameObject clonePrefab;
 
-
 	private Vector3 movement;
 	private float turn;
-	bool disableTurn = false;
+	private bool gamePaused = false;
 
 	public override void OnStartLocalPlayer() {
-		// activate circle below player
-		transform.GetChild(0).gameObject.SetActive(true);
+		ShowPlayerIndicator();
+		SetupCamera ();
 
-		// setup camera
-		Camera.main.transform.position = transform.position
-			- transform.forward * 10
-			+ transform.up * 3;
-		Camera.main.transform.rotation = transform.rotation;
-		Camera.main.transform.parent = transform;
-
+		//@todo:  turn cursor back on once player leaves
 		Cursor.visible = false;
 	}
 
 	void Update () {
 		if (isLocalPlayer) {
-			GunControl ();
-			MovementControl ();
-			if (!disableTurn) {
+			PauseControl ();
+			if (!gamePaused) {
+				GunControl ();
+				MovementControl ();
 				TurnControl ();
+				SpawnControl ();
+				CursorVisibility ();
 			}
-			SpawnControl ();
+		}
+	}
 
-			if (Input.GetKeyDown (KeyCode.C)) {
-				Cursor.visible = !Cursor.visible;
+	void ShowPlayerIndicator() {
+		transform.GetChild(0).gameObject.SetActive(true);
+	}
+
+	void SetupCamera() {
+		Camera.main.transform.position = transform.position
+			- transform.forward * 10
+			+ transform.up * 3;
+		Camera.main.transform.rotation = transform.rotation;
+		Camera.main.transform.parent = transform;
+	}
+
+	void PauseControl() {
+		if (Input.GetKeyDown (KeyCode.P)) {
+			if (gamePaused) {
+				Cursor.visible = false;
+			} else {
+				Cursor.visible = true;
 			}
-			if (Input.GetKeyDown (KeyCode.Y)) {
-				disableTurn = !disableTurn;
-			}
+			gamePaused = !gamePaused;
 		}
 	}
 		
@@ -64,12 +75,12 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	void TurnControl() {
-		if (Input.mousePosition.x < Screen.width * .01) {
-			turn = -turnSpeed;
-		} else if (Input.mousePosition.x > Screen.width * .99) {
-			turn = turnSpeed;
+		if (Input.mousePosition.x < 0 
+			|| Input.mousePosition.x > Screen.width) {
+			turn = 0;
 		} else {
 			turn = Input.GetAxis ("Mouse X") * turnSpeed;
+			Cursor.visible = false;
 		}
 		transform.Rotate (0, turn, 0);
 	}
@@ -77,6 +88,15 @@ public class PlayerController : NetworkBehaviour {
 	void SpawnControl() {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			CmdSpawnClone ();		
+		}
+	}
+
+	void CursorVisibility() {
+		if (Input.mousePosition.x < Screen.width * .05
+			|| Input.mousePosition.x > Screen.width * .95) {
+			Cursor.visible = true;
+		} else {
+			Cursor.visible = false;
 		}
 	}
 
