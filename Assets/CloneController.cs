@@ -17,10 +17,11 @@ public class CloneController : NetworkBehaviour {
 
 	void Awake() {
 		nav = GetComponent<NavMeshAgent> ();
+		nav.stoppingDistance = 8;
 	}
 
 	void Start() {
-		InvokeRepeating ("CmdFire", 5f, 5f); 
+		InvokeRepeating ("CmdFire", 5f, 5f);
 	}
 	
 	void Update () {
