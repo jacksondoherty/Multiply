@@ -1,4 +1,4 @@
-Multiply! 1v1 Third Person Shooter for PC (in development).
+Multiply! 1v1 Online Third Person Shooter for PC (in development).
 
 You are a minion.  Your opponent is a minion.  You can clone
 yourself to produce helper minions to fight your opponent and hide
