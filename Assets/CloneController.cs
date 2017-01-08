@@ -7,20 +7,25 @@ using UnityEngine.Networking;
 public class CloneController : NetworkBehaviour {
 
 	[HideInInspector]
+	[SyncVar]
 	public GameObject creator;
+
 	public float bulletSpeed;
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
 
 	private Transform target;
 	private NavMeshAgent nav;
+	private Renderer renderer;
 
 	void Awake() {
 		nav = GetComponent<NavMeshAgent> ();
 		nav.stoppingDistance = 8;
+		renderer = GetComponent<Renderer> ();
 	}
 
 	void Start() {
+		renderer.material = creator.GetComponent<Renderer> ().material;
 		InvokeRepeating ("CmdFire", 5f, 5f);
 	}
 	
@@ -36,6 +41,7 @@ public class CloneController : NetworkBehaviour {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
 		bool targetFound = false;
 		for (int i = 0; i < players.Length && !targetFound; i++) {
+			// is .Equals the best way to do this?
 			if (!players [i].Equals (creator)) {
 				targetFound = true;
 				target = players[i].GetComponent<Transform>();

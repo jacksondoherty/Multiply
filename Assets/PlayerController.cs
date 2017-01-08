@@ -15,12 +15,24 @@ public class PlayerController : NetworkBehaviour {
 	private Vector3 movement;
 	private float turn;
 	private bool gamePaused = false;
+	private Game gameScript;
+	private Renderer renderer;
+
+	void Awake() {
+		gameScript = GameObject.Find("Game").GetComponent<Game>();
+		renderer = GetComponent<MeshRenderer> ();
+	}
+
+	void Start() {
+		gameScript.EnterGame (gameObject);
+		renderer.material = gameScript.GetColor (gameObject);
+	}
 
 	public override void OnStartLocalPlayer() {
 		ShowPlayerIndicator();
 		SetupCamera ();
 
-		//@todo:  turn cursor back on once player leaves
+		//@todo: turn on cursor after leaving game (implement when building lobby)
 		Cursor.visible = false;
 	}
 
