@@ -11,6 +11,7 @@ public class PlayerController : NetworkBehaviour {
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
 	public GameObject clonePrefab;
+	public GameObject plane;
 
 	private Vector3 movement;
 	private float turn;
