@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 361429233}
   - component: {fileID: 361429232}
   - component: {fileID: 361429231}
+  - component: {fileID: 361429234}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -402,7 +403,7 @@ MonoBehaviour:
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
-  m_OfflineScene: Main
+  m_OfflineScene: OfflineScene
   m_OnlineScene: Main
   m_SpawnPrefabs:
   - {fileID: 1000013048851164, guid: 62f657243982f48d5b61ec753a2f96c0, type: 2}
@@ -462,6 +463,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &361429234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 361429230}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7d3935964794d8dbb02abb78c1c046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!1 &449285320
 GameObject:
   m_ObjectHideFlags: 0
