@@ -18,31 +18,40 @@ public class MyHud : NetworkBehaviour {
 	public Image grid;
 	public bool gamePaused = false;
 	public GameObject gamePauseMenu;
-	public Button endGameButton;
+	public Button endMatchButton;
+	public Text waiting;
 
 	private NetworkManager manager;
 	private Game game;
 	private bool isHost = false;
+	private bool gameStarted = false;
 
 	void Awake()
 	{
 		manager = GetComponent<NetworkManager>();
 		createMatchButton.onClick.AddListener (CreateMatch);
-		endGameButton.onClick.AddListener (EndGame);
+		endMatchButton.onClick.AddListener (EndGame);
 	}
 
 	void Update() {
 		if (NetworkClient.active) {
-			if (manager.clientLoadedScene) {
-				if (game == null) {
-					GameObject gameObj = GameObject.Find("Game");
+			if (game == null) {
+				GameObject gameObj = GameObject.Find("Game");
+				//@Todo - call method to identify when scene has loaded as to not do this
+				if (gameObj != null) {
 					game = gameObj.GetComponent<Game> ();
 				}
-				if (game.gameEnded) {
-					LeaveMatch ();
-				}
 			}
-			if (Input.GetKeyDown (KeyCode.P)) {
+			if (game != null && game.gameEnded) {
+				LeaveMatch ();
+			}
+			// when game starts (both players have entered)
+			if (game != null && game.gameStarted && !gameStarted) {
+				gameStarted = true;
+				waiting.enabled = false;
+				gamePaused = false;
+			}
+			if (gameStarted && Input.GetKeyDown (KeyCode.P)) {
 				gamePaused = !gamePaused;
 			}
 		}
@@ -59,7 +68,12 @@ public class MyHud : NetworkBehaviour {
 			// matchMaker becomes null after exiting match
 			// thus enters here after each completed match
 			if (manager.matchMaker == null) {
-				gamePaused = false;
+				// reset settings
+				isHost = false;
+				gameStarted = false;
+				gamePaused = true;
+				waiting.text = "Preparing match...";
+
 				manager.StartMatchMaker ();
 				matchNameInput.text = manager.matchName;
 				// invoked is cancelled during match
@@ -73,6 +87,7 @@ public class MyHud : NetworkBehaviour {
 	void CreateMatch() {
 		CancelInvoke ();
 		isHost = true;
+		waiting.text = "Waiting for 2nd player to join...";
 		manager.matchMaker.CreateMatch (
 			manager.matchName, 
 			manager.matchSize, 
@@ -86,7 +101,6 @@ public class MyHud : NetworkBehaviour {
 	}
 
 	void EndGame() {
-
 		// Must run code on server to synce vars ->
 		// 	only player objects can do remote procedure calls
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
@@ -102,7 +116,6 @@ public class MyHud : NetworkBehaviour {
 	void LeaveMatch() {
 		if (isHost) {
 			manager.StopHost ();
-			isHost = false;
 		} else {
 			manager.StopClient ();
 		}

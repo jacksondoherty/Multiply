@@ -34,6 +34,7 @@ public class PlayerController : NetworkBehaviour {
 		} else {
 			rend.material = enemyPlayerColor;
 		}
+		CmdEnterGame ();
 	}
 
 	public override void OnStartLocalPlayer() {
@@ -133,5 +134,10 @@ public class PlayerController : NetworkBehaviour {
 	[Command]
 	public void CmdEndGame() {
 		gameScript.EndGame ();
+	}
+
+	[Command]
+	public void CmdEnterGame() {
+		gameScript.EnterGame ();
 	}
 }
