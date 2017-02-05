@@ -11,7 +11,8 @@ public class PlayerController : NetworkBehaviour {
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
 	public GameObject clonePrefab;
-	public GameObject plane;
+	public Material localPlayerColor;
+	public Material enemyPlayerColor;
 
 	private Vector3 movement;
 	private float turn;
@@ -28,16 +29,16 @@ public class PlayerController : NetworkBehaviour {
 
 	void Start() {
 		GetComponent<Rigidbody> ().freezeRotation = true;
-		gameScript.EnterGame (gameObject);
-		rend.material = gameScript.GetColor (gameObject);
+		if (isLocalPlayer) {
+			rend.material = localPlayerColor;
+		} else {
+			rend.material = enemyPlayerColor;
+		}
 	}
 
 	public override void OnStartLocalPlayer() {
 		ShowPlayerIndicator();
 		SetupCamera ();
-
-		//@todo: turn on cursor after leaving game (implement when building lobby)
-		Cursor.visible = false;
 	}
 
 	void Update () {

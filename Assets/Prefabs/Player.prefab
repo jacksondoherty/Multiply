@@ -410,6 +410,8 @@ MonoBehaviour:
   clonePrefab: {fileID: 1996588175940270, guid: 3a091331dc87b481d8c7c1cf4b5a6fb8,
     type: 2}
   plane: {fileID: 0}
+  localPlayerColor: {fileID: 2100000, guid: a840d117a83b84cf5b2c8ede51247cb2, type: 2}
+  enemyPlayerColor: {fileID: 2100000, guid: 843e00fcb1a5148ab929632e172ee5df, type: 2}
 --- !u!114 &114000010447474758
 MonoBehaviour:
   m_ObjectHideFlags: 1
