@@ -15,18 +15,21 @@ public class PlayerController : NetworkBehaviour {
 
 	private Vector3 movement;
 	private float turn;
-	private bool gamePaused = false;
 	private Game gameScript;
-	private Renderer renderer;
+	private Renderer rend;
+	private MyHud myHud;
 
 	void Awake() {
 		gameScript = GameObject.Find("Game").GetComponent<Game>();
-		renderer = GetComponent<MeshRenderer> ();
+		rend = GetComponent<MeshRenderer> ();
+		GameObject managerObj = GameObject.Find ("NetworkManager");
+		myHud = managerObj.GetComponent<MyHud> ();
 	}
 
 	void Start() {
+		GetComponent<Rigidbody> ().freezeRotation = true;
 		gameScript.EnterGame (gameObject);
-		renderer.material = gameScript.GetColor (gameObject);
+		rend.material = gameScript.GetColor (gameObject);
 	}
 
 	public override void OnStartLocalPlayer() {
@@ -39,13 +42,12 @@ public class PlayerController : NetworkBehaviour {
 
 	void Update () {
 		if (isLocalPlayer) {
-			PauseControl ();
-			if (!gamePaused) {
+			CursorVisibility ();
+			if (!myHud.gamePaused) {
 				GunControl ();
 				MovementControl ();
 				TurnControl ();
 				SpawnControl ();
-				CursorVisibility ();
 			}
 		}
 	}
@@ -60,17 +62,6 @@ public class PlayerController : NetworkBehaviour {
 			+ transform.up * 3;
 		Camera.main.transform.rotation = transform.rotation;
 		Camera.main.transform.parent = transform;
-	}
-
-	void PauseControl() {
-		if (Input.GetKeyDown (KeyCode.P)) {
-			if (gamePaused) {
-				Cursor.visible = false;
-			} else {
-				Cursor.visible = true;
-			}
-			gamePaused = !gamePaused;
-		}
 	}
 		
 	void GunControl() {
@@ -89,7 +80,9 @@ public class PlayerController : NetworkBehaviour {
 
 	void TurnControl() {
 		if (Input.mousePosition.x < 0 
-			|| Input.mousePosition.x > Screen.width) {
+			|| Input.mousePosition.x > Screen.width
+			|| Input.mousePosition.y > Screen.height
+			|| Input.mousePosition.y < 0) {
 			turn = 0;
 		} else {
 			turn = Input.GetAxis ("Mouse X") * turnSpeed;
@@ -105,7 +98,8 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	void CursorVisibility() {
-		if (Input.mousePosition.x < Screen.width * .05
+		if (myHud.gamePaused
+			|| Input.mousePosition.x < Screen.width * .05
 			|| Input.mousePosition.x > Screen.width * .95) {
 			Cursor.visible = true;
 		} else {
@@ -133,5 +127,10 @@ public class PlayerController : NetworkBehaviour {
 
 		// destroy bullet after 10 seconds
 		Destroy(bullet, 10.0f);
+	}
+
+	[Command]
+	public void CmdEndGame() {
+		gameScript.EndGame ();
 	}
 }

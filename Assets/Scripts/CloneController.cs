@@ -16,16 +16,16 @@ public class CloneController : NetworkBehaviour {
 
 	private Transform target;
 	private NavMeshAgent nav;
-	private Renderer renderer;
+	private Renderer rend;
 
 	void Awake() {
 		nav = GetComponent<NavMeshAgent> ();
 		nav.stoppingDistance = 8;
-		renderer = GetComponent<Renderer> ();
+		rend = GetComponent<Renderer> ();
 	}
 
 	void Start() {
-		renderer.material = creator.GetComponent<Renderer> ().material;
+		rend.material = creator.GetComponent<Renderer> ().material;
 		InvokeRepeating ("CmdFire", 5f, 5f);
 	}
 	

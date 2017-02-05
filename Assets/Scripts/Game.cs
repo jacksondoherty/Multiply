@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class Game : NetworkBehaviour {
 
+	[SyncVar]
+	public bool gameEnded = false;
 	public Material playerOneColor;
 	public Material playerTwoColor;
 
@@ -40,5 +42,13 @@ public class Game : NetworkBehaviour {
 			print ("cannot identify player");
 			return null;
 		}
+	}
+
+	public void EndGame() {
+		if (!isServer) {
+			return;
+		}
+
+		gameEnded = true;
 	}
 }
