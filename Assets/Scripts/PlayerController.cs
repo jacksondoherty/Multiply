@@ -81,15 +81,7 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	void TurnControl() {
-		if (Input.mousePosition.x < 0 
-			|| Input.mousePosition.x > Screen.width
-			|| Input.mousePosition.y > Screen.height
-			|| Input.mousePosition.y < 0) {
-			turn = 0;
-		} else {
-			turn = Input.GetAxis ("Mouse X") * turnSpeed;
-			Cursor.visible = false;
-		}
+		turn = Input.GetAxis ("Mouse X") * turnSpeed;
 		transform.Rotate (0, turn, 0);
 	}
 
