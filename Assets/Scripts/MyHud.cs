@@ -73,6 +73,7 @@ public class MyHud : NetworkBehaviour {
 				gameStarted = false;
 				gamePaused = true;
 				waiting.text = "Preparing match...";
+				waiting.enabled = true;
 
 				manager.StartMatchMaker ();
 				matchNameInput.text = manager.matchName;
