@@ -13,6 +13,7 @@ public class PlayerController : NetworkBehaviour {
 	public GameObject clonePrefab;
 	public Material localPlayerColor;
 	public Material enemyPlayerColor;
+	public int clonesLeft = 10;
 
 	private Vector3 movement;
 	private float turn;
@@ -38,8 +39,9 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	public override void OnStartLocalPlayer() {
-		ShowPlayerIndicator();
 		SetupCamera ();
+		transform.Find ("Circle").gameObject.SetActive (true);
+		transform.Find ("PlayerHUD").gameObject.SetActive (true);
 	}
 
 	void Update () {
@@ -49,13 +51,11 @@ public class PlayerController : NetworkBehaviour {
 				GunControl ();
 				MovementControl ();
 				TurnControl ();
-				SpawnControl ();
+				if (clonesLeft > 0) {
+					SpawnControl ();
+				}
 			}
 		}
-	}
-
-	void ShowPlayerIndicator() {
-		transform.GetChild(0).gameObject.SetActive(true);
 	}
 
 	void SetupCamera() {
@@ -88,6 +88,7 @@ public class PlayerController : NetworkBehaviour {
 	void SpawnControl() {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			CmdSpawnClone ();		
+			clonesLeft--;
 		}
 	}
 
