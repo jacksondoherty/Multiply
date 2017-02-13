@@ -19,12 +19,13 @@ public class MyHud : NetworkBehaviour {
 	public bool gamePaused = false;
 	public GameObject gamePauseMenu;
 	public Button endMatchButton;
-	public Text waiting;
+	public Text pauseText;
 
 	private NetworkManager manager;
-	private Game game;
+	private Game gameScript;
 	private bool isHost = false;
 	private bool gameStarted = false;
+	private PlayerController localPlayerScript;
 
 	void Awake()
 	{
@@ -35,24 +36,35 @@ public class MyHud : NetworkBehaviour {
 
 	void Update() {
 		if (NetworkClient.active) {
-			if (game == null) {
-				GameObject gameObj = GameObject.Find("Game");
+			if (localPlayerScript == null) {
+				SetupLocalPlayerRef ();
+			}
+			if (gameScript == null) {
+				GameObject gameObj = GameObject.Find ("Game");
 				//@Todo - call method to identify when scene has loaded as to not do this
 				if (gameObj != null) {
-					game = gameObj.GetComponent<Game> ();
+					gameScript = gameObj.GetComponent<Game> ();
 				}
-			}
-			if (game != null && game.gameEnded) {
-				LeaveMatch ();
-			}
-			// when game starts (both players have entered)
-			if (game != null && game.gameStarted && !gameStarted) {
-				gameStarted = true;
-				waiting.enabled = false;
-				gamePaused = false;
-			}
-			if (gameStarted && Input.GetKeyDown (KeyCode.P)) {
-				gamePaused = !gamePaused;
+			} else {
+				if (gameScript.gameEnded) {
+					LeaveMatch ();
+				} else if (gameScript.gameOver) {
+					gamePaused = true;
+					if (gameScript.winnerId == localPlayerScript.netId) {
+						pauseText.text = "You won!";
+					} else {
+						pauseText.text = "You lost.";
+					}
+					pauseText.enabled = true;
+				// when game starts (both players have entered)
+				} else if (gameScript.gameStarted && !gameStarted) {
+					gameStarted = true;
+					pauseText.enabled = false;
+					gamePaused = false;
+				}
+				if (gameStarted && !gameScript.gameOver && Input.GetKeyDown (KeyCode.P)) {
+					gamePaused = !gamePaused;
+				}
 			}
 		}
 	}
@@ -72,8 +84,8 @@ public class MyHud : NetworkBehaviour {
 				isHost = false;
 				gameStarted = false;
 				gamePaused = true;
-				waiting.text = "Preparing match...";
-				waiting.enabled = true;
+				pauseText.text = "Preparing match...";
+				pauseText.enabled = true;
 
 				manager.StartMatchMaker ();
 				matchNameInput.text = manager.matchName;
@@ -84,11 +96,21 @@ public class MyHud : NetworkBehaviour {
 			manager.matchName = matchNameInput.text;
 		}
 	}
+
+	void SetupLocalPlayerRef() {
+		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
+		for (int i = 0; i < players.Length; i++) {
+			PlayerController script = players [i].GetComponent<PlayerController> ();
+			if (script.isLocalPlayer) {
+				localPlayerScript = script;
+			}
+		}
+	}
 		
 	void CreateMatch() {
 		CancelInvoke ();
 		isHost = true;
-		waiting.text = "Waiting for 2nd player to join...";
+		pauseText.text = "Waiting for 2nd player to join...";
 		manager.matchMaker.CreateMatch (
 			manager.matchName, 
 			manager.matchSize, 
@@ -104,14 +126,7 @@ public class MyHud : NetworkBehaviour {
 	void EndGame() {
 		// Must run code on server to synce vars ->
 		// 	only player objects can do remote procedure calls
-		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
-		for (int i = 0; i < players.Length; i++) {
-			PlayerController script = players [i].GetComponent<PlayerController> ();
-			if (script.isLocalPlayer) {
-				script.CmdEndGame ();
-				break;
-			}
-		}
+		localPlayerScript.CmdEndGame();
 	}
 
 	void LeaveMatch() {

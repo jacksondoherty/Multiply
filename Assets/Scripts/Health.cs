@@ -16,6 +16,11 @@ public class Health : NetworkBehaviour {
 	public bool destroyOnDeath;
 
 	private NetworkStartPosition[] spawnPoints;
+	private Game gameScript;
+
+	void Awake() {
+		gameScript = GameObject.Find("Game").GetComponent<Game>();
+	}
 
 	void Start() {
 		if (isLocalPlayer) {
@@ -31,13 +36,22 @@ public class Health : NetworkBehaviour {
 		currentHealth -= amount;
 		if (currentHealth <= 0)
 		{
+			CmdDie ();
+			/*
 			if (destroyOnDeath) {
 				Destroy (gameObject);
 			} else {
 				currentHealth = maxHealth;
+				transform.GetComponent<PlayerController> ().clonesLeft = 10;
 				RpcRespawn();
 			}
+			*/
 		}
+	}
+
+	[Command]
+	void CmdDie() {
+		gameScript.RegisterDeath (netId);
 	}
 
 	void OnChangeHealth(int currentHealth) {

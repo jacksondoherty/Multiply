@@ -35,16 +35,21 @@ public class PlayerController : NetworkBehaviour {
 		} else {
 			rend.material = enemyPlayerColor;
 		}
-		CmdEnterGame ();
 	}
 
 	public override void OnStartLocalPlayer() {
 		SetupCamera ();
 		transform.Find ("Circle").gameObject.SetActive (true);
 		transform.Find ("PlayerHUD").gameObject.SetActive (true);
+		CmdEnterGame ();
 	}
 
 	void Update () {
+		//DEBUG
+		if (Input.GetKeyDown (KeyCode.I)) {
+			PrintNetID ();
+		}
+
 		if (isLocalPlayer) {
 			CursorVisibility ();
 			if (!myHud.gamePaused) {
@@ -102,6 +107,14 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
+	void PrintNetID() {
+		if (isLocalPlayer) {
+			print ("local netID: " + netId);
+		} else {
+			print ("other player: " + netId);
+		}
+	}
+
 	[Command]
 	void CmdSpawnClone() {
 		GameObject clone = (GameObject)Instantiate (clonePrefab, 
@@ -131,6 +144,6 @@ public class PlayerController : NetworkBehaviour {
 
 	[Command]
 	public void CmdEnterGame() {
-		gameScript.EnterGame ();
+		gameScript.EnterGame (netId);
 	}
 }

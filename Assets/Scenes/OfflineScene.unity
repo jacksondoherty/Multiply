@@ -1412,7 +1412,7 @@ GameObject:
   - component: {fileID: 1829219796}
   - component: {fileID: 1829219795}
   m_Layer: 5
-  m_Name: Waiting
+  m_Name: PauseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1614,7 +1614,7 @@ MonoBehaviour:
   gamePaused: 0
   gamePauseMenu: {fileID: 337326987}
   endMatchButton: {fileID: 435264981}
-  waiting: {fileID: 1829219795}
+  pauseText: {fileID: 1829219795}
 --- !u!1 &1952958765
 GameObject:
   m_ObjectHideFlags: 0

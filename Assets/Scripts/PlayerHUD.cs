@@ -8,6 +8,7 @@ public class PlayerHUD : MonoBehaviour {
 	public Transform cloneIcons;
 
 	private PlayerController player;
+	private int iconCount;
 
 	void Awake() {
 		player = GetComponentInParent<PlayerController> ();
@@ -15,12 +16,15 @@ public class PlayerHUD : MonoBehaviour {
 
 	void Start() {
 		cloneIcons = transform.Find ("CloneIcons");
+		// perhaps instantiate icons in script 
+		iconCount = cloneIcons.childCount;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (player.clonesLeft < cloneIcons.childCount) {
-			Destroy(cloneIcons.GetChild(cloneIcons.childCount-1).gameObject);
+		if (player.clonesLeft < iconCount) {
+			cloneIcons.GetChild (iconCount - 1).gameObject.SetActive (false);
+			iconCount--;
 		}
 	}
 }
