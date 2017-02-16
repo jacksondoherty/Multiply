@@ -36,7 +36,7 @@ public class Health : NetworkBehaviour {
 		currentHealth -= amount;
 		if (currentHealth <= 0)
 		{
-			CmdDie ();
+			gameScript.RegisterDeath (netId);
 			/*
 			if (destroyOnDeath) {
 				Destroy (gameObject);
@@ -47,11 +47,6 @@ public class Health : NetworkBehaviour {
 			}
 			*/
 		}
-	}
-
-	[Command]
-	void CmdDie() {
-		gameScript.RegisterDeath (netId);
 	}
 
 	void OnChangeHealth(int currentHealth) {

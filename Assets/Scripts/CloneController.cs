@@ -26,7 +26,7 @@ public class CloneController : NetworkBehaviour {
 
 	void Start() {
 		rend.material = creator.GetComponent<Renderer> ().material;
-		InvokeRepeating ("CmdFire", 5f, 5f);
+		InvokeRepeating ("Fire", 5f, 5f);
 	}
 	
 	void Update () {
@@ -49,6 +49,14 @@ public class CloneController : NetworkBehaviour {
 		}
 	}
 
+	void Fire() {
+		var bullet = (GameObject)Instantiate (bulletPrefab,
+			bulletSpawn.position,
+			bulletSpawn.rotation);
+		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
+	}
+
+	/*
 	[Command]
 	void CmdFire() {
 		var bullet = (GameObject)Instantiate (bulletPrefab,
@@ -60,4 +68,5 @@ public class CloneController : NetworkBehaviour {
 		// destroy bullet after 10 seconds
 		Destroy(bullet, 10.0f);
 	}
+	*/
 }
