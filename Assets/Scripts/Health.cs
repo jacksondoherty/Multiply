@@ -36,16 +36,11 @@ public class Health : NetworkBehaviour {
 		currentHealth -= amount;
 		if (currentHealth <= 0)
 		{
-			gameScript.RegisterDeath (netId);
-			/*
 			if (destroyOnDeath) {
 				Destroy (gameObject);
 			} else {
-				currentHealth = maxHealth;
-				transform.GetComponent<PlayerController> ().clonesLeft = 10;
-				RpcRespawn();
+				gameScript.RegisterDeath (netId);
 			}
-			*/
 		}
 	}
 
