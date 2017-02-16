@@ -26,6 +26,7 @@ public class MyHud : NetworkBehaviour {
 	private bool isHost = false;
 	private bool gameStarted = false;
 	private PlayerController localPlayerScript;
+	private bool networkActive = true;
 
 	void Awake()
 	{
@@ -70,13 +71,18 @@ public class MyHud : NetworkBehaviour {
 	}
 
 	void OnGUI() {
-		if (NetworkClient.active) {
+		if (NetworkClient.active && !networkActive) {
+			networkActive = true;
 			lobbyMenu.SetActive (false);
-			gamePauseMenu.SetActive (gamePaused);
-		} else {
+		}  else if (!NetworkClient.active && networkActive) {
+			networkActive = false;
 			lobbyMenu.SetActive (true);
 			gamePauseMenu.SetActive (false);
+		}
 
+		if (networkActive) {
+			gamePauseMenu.SetActive (gamePaused);
+		} else {
 			// matchMaker becomes null after exiting match
 			// thus enters here after each completed match
 			if (manager.matchMaker == null) {

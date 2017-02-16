@@ -45,11 +45,6 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	void Update () {
-		//DEBUG
-		if (Input.GetKeyDown (KeyCode.I)) {
-			PrintNetID ();
-		}
-
 		if (isLocalPlayer) {
 			CursorVisibility ();
 			if (!myHud.gamePaused) {
