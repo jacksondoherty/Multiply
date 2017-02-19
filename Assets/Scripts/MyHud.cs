@@ -74,6 +74,7 @@ public class MyHud : NetworkBehaviour {
 		if (NetworkClient.active && !networkActive) {
 			networkActive = true;
 			lobbyMenu.SetActive (false);
+			CancelInvoke ();
 		}  else if (!NetworkClient.active && networkActive) {
 			networkActive = false;
 			lobbyMenu.SetActive (true);
@@ -114,7 +115,6 @@ public class MyHud : NetworkBehaviour {
 	}
 		
 	void CreateMatch() {
-		CancelInvoke ();
 		isHost = true;
 		pauseText.text = "Waiting for 2nd player to join...";
 		manager.matchMaker.CreateMatch (
