@@ -20,6 +20,9 @@ public class MyHud : NetworkBehaviour {
 	public GameObject gamePauseMenu;
 	public Button endMatchButton;
 	public Text pauseText;
+	public Button lanHostButton;
+	public Button lanClientButton;
+	public InputField hostAddress;
 
 	private NetworkManager manager;
 	private Game gameScript;
@@ -33,6 +36,8 @@ public class MyHud : NetworkBehaviour {
 		manager = GetComponent<NetworkManager>();
 		createMatchButton.onClick.AddListener (CreateMatch);
 		endMatchButton.onClick.AddListener (EndGame);
+		lanHostButton.onClick.AddListener (LANHost);
+		lanClientButton.onClick.AddListener (LANClient);
 	}
 
 	void Update() {
@@ -98,9 +103,11 @@ public class MyHud : NetworkBehaviour {
 				matchNameInput.text = manager.matchName;
 				// invoked is cancelled during match
 				InvokeRepeating ("ReloadMatches", 0.0f, 2.0f);
+				hostAddress.text = "localhost";
 			}
 
 			manager.matchName = matchNameInput.text;
+			manager.networkAddress = hostAddress.text;
 		}
 	}
 
@@ -112,6 +119,16 @@ public class MyHud : NetworkBehaviour {
 				localPlayerScript = script;
 			}
 		}
+	}
+
+	void LANHost() {
+		isHost = true;
+		pauseText.text = "Waiting for 2nd player to join...";
+		manager.StartHost ();
+	}
+
+	void LANClient() {
+		manager.StartClient ();
 	}
 		
 	void CreateMatch() {
