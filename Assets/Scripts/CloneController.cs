@@ -50,23 +50,13 @@ public class CloneController : NetworkBehaviour {
 	}
 
 	void Fire() {
+		if (!isServer) return;
+
 		var bullet = (GameObject)Instantiate (bulletPrefab,
 			bulletSpawn.position,
 			bulletSpawn.rotation);
 		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
-	}
-
-	/*
-	[Command]
-	void CmdFire() {
-		var bullet = (GameObject)Instantiate (bulletPrefab,
-												bulletSpawn.position,
-												bulletSpawn.rotation);
-		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
 		NetworkServer.Spawn (bullet);
-
-		// destroy bullet after 10 seconds
 		Destroy(bullet, 10.0f);
 	}
-	*/
 }
