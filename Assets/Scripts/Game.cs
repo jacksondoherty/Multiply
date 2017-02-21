@@ -22,14 +22,6 @@ public class Game : NetworkBehaviour {
 	private int numPlayers = 0;
 	private const int maxPlayers = 2;
 
-	public void EnterGame() {
-		numPlayers++;
-		// matchmaker shouldn't allow more players to join after here
-		if (numPlayers == maxPlayers) {
-			gameStarted = true;
-		}
-	}
-
 	public void EnterGame(NetworkInstanceId id) {
 		numPlayers++;
 		if (numPlayers == 1) {
@@ -37,9 +29,11 @@ public class Game : NetworkBehaviour {
 		} else if (numPlayers == 2) {
 			playerTwoId = id;
 		} else {
-			print ("Error: more than 2 players");
+			// should not reach here - end match
+			print("Error: more than 2 players in match");
+			EndGame ();
 		}
-		// matchmaker shouldn't allow more players to join after here
+
 		if (numPlayers == maxPlayers) {
 			gameStarted = true;
 		}
@@ -62,6 +56,10 @@ public class Game : NetworkBehaviour {
 		//DEBUG
 		if (Input.GetKeyDown (KeyCode.I)) {
 			PrintNetIDs ();
+		}
+		//DEBUG
+		if (Input.GetKeyDown (KeyCode.O)) {
+			print (numPlayers);
 		}
 	}
 

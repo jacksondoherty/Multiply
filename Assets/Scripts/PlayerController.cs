@@ -19,29 +19,34 @@ public class PlayerController : NetworkBehaviour {
 	private float turn;
 	private Game gameScript;
 	private Renderer rend;
+	private Rigidbody rigidbody;
 	private MyHud myHud;
 
 	void Awake() {
 		gameScript = GameObject.Find("Game").GetComponent<Game>();
-		rend = GetComponent<MeshRenderer> ();
 		GameObject managerObj = GameObject.Find ("NetworkManager");
 		myHud = managerObj.GetComponent<MyHud> ();
+		rend = GetComponent<MeshRenderer> ();
+		rend.enabled = false;
+		rigidbody = GetComponent<Rigidbody> ();
+		rigidbody.freezeRotation = true;
+		rigidbody.isKinematic = true;
+		transform.Find ("Circle").gameObject.SetActive (false);
+		transform.Find ("PlayerHUD").gameObject.SetActive (false);
+		transform.Find ("Visor").gameObject.SetActive (false);
+		transform.Find ("Gun").gameObject.SetActive (false);
+		transform.Find ("BulletSpawn").gameObject.SetActive (false);
+		transform.Find ("HealthbarCanvas").gameObject.SetActive (false);
 	}
 
 	void Start() {
-		GetComponent<Rigidbody> ().freezeRotation = true;
-		if (isLocalPlayer) {
-			rend.material = localPlayerColor;
+		if (gameScript.gameStarted) {
+			if (isLocalPlayer) {
+				myHud.LeaveMatch ();
+			}
 		} else {
-			rend.material = enemyPlayerColor;
+			ActivatePlayer ();
 		}
-	}
-
-	public override void OnStartLocalPlayer() {
-		SetupCamera ();
-		transform.Find ("Circle").gameObject.SetActive (true);
-		transform.Find ("PlayerHUD").gameObject.SetActive (true);
-		CmdEnterGame ();
 	}
 
 	void Update () {
@@ -56,6 +61,25 @@ public class PlayerController : NetworkBehaviour {
 				}
 			}
 		}
+	}
+
+	void ActivatePlayer() {
+		rend.enabled = true;
+		if (isLocalPlayer) {
+			rend.material = localPlayerColor;
+			rend.enabled = true;
+			SetupCamera ();
+			transform.Find ("Circle").gameObject.SetActive (true);
+			transform.Find ("PlayerHUD").gameObject.SetActive (true);
+			CmdEnterGame ();
+		} else {
+			rend.material = enemyPlayerColor;
+		}
+		rigidbody.isKinematic = false;
+		transform.Find ("Visor").gameObject.SetActive (true);
+		transform.Find ("Gun").gameObject.SetActive (true);
+		transform.Find ("BulletSpawn").gameObject.SetActive (true);
+		transform.Find ("HealthbarCanvas").gameObject.SetActive (true);
 	}
 
 	void SetupCamera() {

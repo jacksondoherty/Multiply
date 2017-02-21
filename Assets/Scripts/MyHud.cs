@@ -160,7 +160,7 @@ public class MyHud : NetworkBehaviour {
 		}
 	}
 
-	void LeaveMatch() {
+	public void LeaveMatch() {
 		if (isHost) {
 			manager.StopHost ();
 		} else {
