@@ -96,6 +96,8 @@ public class MyHud : NetworkBehaviour {
 				isHost = false;
 				gameStarted = false;
 				gamePaused = true;
+				// Internet Join match default
+				// @TODO: put this in a more intuitive place
 				pauseText.text = "Preparing match...";
 				pauseText.enabled = true;
 
@@ -123,11 +125,12 @@ public class MyHud : NetworkBehaviour {
 
 	void LANHost() {
 		isHost = true;
-		pauseText.text = "Waiting for 2nd player to join...";
+		pauseText.text = "Waiting on Client...";
 		manager.StartHost ();
 	}
 
 	void LANClient() {
+		pauseText.text = "Waiting on Host...";
 		manager.StartClient ();
 	}
 		
@@ -147,9 +150,14 @@ public class MyHud : NetworkBehaviour {
 	}
 
 	void EndGame() {
-		// Must run code on server to synce vars ->
-		// 	only player objects can do remote procedure calls
-		localPlayerScript.CmdEndGame();
+		// never entered game -> no host
+		if (localPlayerScript == null) {
+			LeaveMatch ();
+		} else {
+			// Must run code on server to synce vars ->
+			// 	only player objects can do remote procedure calls
+			localPlayerScript.CmdEndGame();
+		}
 	}
 
 	void LeaveMatch() {
@@ -173,6 +181,7 @@ public class MyHud : NetworkBehaviour {
 		UpdateButtons ();
 	}
 
+	// Internet Matches
 	void UpdateButtons() {
 		if (manager.matches != null) {
 			// remove completed matches
