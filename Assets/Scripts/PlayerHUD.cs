@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour {
 
-	public Transform cloneIcons;
-
+	private Transform cloneIcons;
+	private Transform donutIcons;
 	private PlayerController player;
-	private int iconCount;
+	private int cloneCount;
+	private int donutCount;
 
 	void Awake() {
 		player = GetComponentInParent<PlayerController> ();
@@ -16,15 +17,21 @@ public class PlayerHUD : MonoBehaviour {
 
 	void Start() {
 		cloneIcons = transform.Find ("CloneIcons");
+		donutIcons = transform.Find ("DonutIcons");
 		// perhaps instantiate icons in script 
-		iconCount = cloneIcons.childCount;
+		cloneCount = cloneIcons.childCount;
+		donutCount = donutIcons.childCount;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (player.clonesLeft < iconCount) {
-			cloneIcons.GetChild (iconCount - 1).gameObject.SetActive (false);
-			iconCount--;
+		if (player.clonesLeft < cloneCount) {
+			cloneIcons.GetChild (cloneCount - 1).gameObject.SetActive (false);
+			cloneCount--;
+		}
+		if (player.donutsLeft < donutCount) {
+			donutIcons.GetChild (donutCount - 1).gameObject.SetActive (false);
+			donutCount--;
 		}
 	}
 }

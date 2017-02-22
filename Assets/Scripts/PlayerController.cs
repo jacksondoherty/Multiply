@@ -8,12 +8,16 @@ public class PlayerController : NetworkBehaviour {
 	public float movementSpeed;
 	public float turnSpeed;
 	public float bulletSpeed;
+	public float donutSpeed;
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
+	public Transform donutSpawn;
+	public GameObject donutPrefab;
 	public GameObject clonePrefab;
 	public Material localPlayerColor;
 	public Material enemyPlayerColor;
-	public int clonesLeft = 10;
+	public int clonesLeft;
+	public int donutsLeft;
 
 	private Vector3 movement;
 	private float turn;
@@ -54,11 +58,10 @@ public class PlayerController : NetworkBehaviour {
 			CursorVisibility ();
 			if (!myHud.gamePaused) {
 				GunControl ();
+				DonutControl ();
 				MovementControl ();
 				TurnControl ();
-				if (clonesLeft > 0) {
-					SpawnControl ();
-				}
+				SpawnControl ();
 			}
 		}
 	}
@@ -96,6 +99,15 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
+	void DonutControl() {
+		if (donutsLeft > 0) {
+			if (Input.GetMouseButtonDown (1)) {
+				CmdThrowDonut ();
+				donutsLeft--;
+			}
+		}
+	}
+
 	void MovementControl() {
 		float horizontal = Input.GetAxisRaw ("Horizontal");
 		float vertical = Input.GetAxisRaw ("Vertical");
@@ -110,9 +122,11 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	void SpawnControl() {
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			CmdSpawnClone ();		
-			clonesLeft--;
+		if (clonesLeft > 0) {
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				CmdSpawnClone ();		
+				clonesLeft--;
+			}
 		}
 	}
 
@@ -147,13 +161,24 @@ public class PlayerController : NetworkBehaviour {
 	[Command]
 	void CmdFire() {
 		var bullet = (GameObject)Instantiate (bulletPrefab,
-												bulletSpawn.position,
-												bulletSpawn.rotation);
+			bulletSpawn.position,
+			bulletSpawn.rotation);
 		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
 		NetworkServer.Spawn (bullet);
 
 		// destroy bullet after 10 seconds
 		Destroy(bullet, 10.0f);
+	}
+
+	[Command]
+	void CmdThrowDonut() {
+		var donut = (GameObject)Instantiate (donutPrefab, 
+			donutSpawn.position, 
+			donutSpawn.rotation);
+		donut.GetComponent<Rigidbody> ().velocity = donut.transform.forward * donutSpeed;
+		donut.GetComponent<Donut> ().creator = gameObject;
+		// TODO: donut color
+		NetworkServer.Spawn (donut);
 	}
 
 	[Command]
