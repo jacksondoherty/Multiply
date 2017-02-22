@@ -20,8 +20,6 @@ public class CloneController : NetworkBehaviour {
 
 	void Awake() {
 		nav = GetComponent<NavMeshAgent> ();
-		nav.stoppingDistance = 8;
-		nav.updateRotation = true;
 		rend = GetComponent<Renderer> ();
 	}
 
@@ -29,6 +27,8 @@ public class CloneController : NetworkBehaviour {
 		rend.material = creator.GetComponent<Renderer> ().material;
 		InvokeRepeating ("FindTarget", 3f, 3f);
 		InvokeRepeating ("Fire", 3f, 3f);
+		nav.stoppingDistance = 8;
+		nav.updateRotation = true;
 	}
 	
 	void Update () {

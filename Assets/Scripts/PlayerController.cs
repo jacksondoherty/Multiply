@@ -131,12 +131,10 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	void CursorVisibility() {
-		if (myHud.gamePaused
-			|| Input.mousePosition.x < Screen.width * .05
-			|| Input.mousePosition.x > Screen.width * .95) {
-			Cursor.visible = true;
+		if (myHud.gamePaused) {
+			Cursor.lockState = CursorLockMode.None;
 		} else {
-			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
 		}
 	}
 

@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creator: {fileID: 0}
-  bulletSpeed: 30
+  bulletSpeed: 40
   bulletPrefab: {fileID: 1000013048851164, guid: 62f657243982f48d5b61ec753a2f96c0,
     type: 2}
   bulletSpawn: {fileID: 4017891026148544}

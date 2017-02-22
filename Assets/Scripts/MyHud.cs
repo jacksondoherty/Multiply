@@ -68,7 +68,8 @@ public class MyHud : NetworkBehaviour {
 					pauseText.enabled = false;
 					gamePaused = false;
 				}
-				if (gameStarted && !gameScript.gameOver && Input.GetKeyDown (KeyCode.P)) {
+				if (gameStarted && !gameScript.gameOver && 
+					(Input.GetKeyDown (KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))) {
 					gamePaused = !gamePaused;
 				}
 			}
