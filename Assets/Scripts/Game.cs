@@ -44,11 +44,13 @@ public class Game : NetworkBehaviour {
 	}
 
 	public void RegisterDeath(NetworkInstanceId id) { 
-		gameOver = true;
-		if (id == playerOneId) {
-			winnerId = playerTwoId;
-		} else {
-			winnerId = playerOneId;
+		if (!gameOver) {
+			gameOver = true;
+			if (id == playerOneId) {
+				winnerId = playerTwoId;
+			} else {
+				winnerId = playerOneId;
+			}
 		}
 	}
 

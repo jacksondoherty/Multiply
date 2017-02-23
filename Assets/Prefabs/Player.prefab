@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 222487189826253580}
   - component: {fileID: 114820857931466948}
   m_Layer: 5
-  m_Name: CloneIcon (2)
+  m_Name: CloneIcon 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 222145102692060726}
   - component: {fileID: 114893985336682650}
   m_Layer: 5
-  m_Name: CloneIcon (7)
+  m_Name: CloneIcon 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 222962960012940766}
   - component: {fileID: 114856775051606102}
   m_Layer: 5
-  m_Name: CloneIcon14
+  m_Name: CloneIcon 16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 222445730613002688}
   - component: {fileID: 114584862389939674}
   m_Layer: 5
-  m_Name: CloneIcon (6)
+  m_Name: CloneIcon 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 222428102336826628}
   - component: {fileID: 114551495812299616}
   m_Layer: 5
-  m_Name: CloneIcon17
+  m_Name: CloneIcon 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 222487009012099040}
   - component: {fileID: 114747700003095744}
   m_Layer: 5
-  m_Name: CloneIcon12
+  m_Name: CloneIcon 18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 222363694613813630}
   - component: {fileID: 114618428259077620}
   m_Layer: 5
-  m_Name: CloneIcon (5)
+  m_Name: CloneIcon 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 222611442005212266}
   - component: {fileID: 114175851428311796}
   m_Layer: 5
-  m_Name: CloneIcon
+  m_Name: CloneIcon 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 222250300833721402}
   - component: {fileID: 114000099309268528}
   m_Layer: 5
-  m_Name: CloneIcon (1)
+  m_Name: CloneIcon 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 222705954645596856}
   - component: {fileID: 114920554891274936}
   m_Layer: 5
-  m_Name: CloneIcon18
+  m_Name: CloneIcon 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 222423443249531234}
   - component: {fileID: 114334666346257014}
   m_Layer: 5
-  m_Name: CloneIcon (9)
+  m_Name: CloneIcon 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 222957555388964344}
   - component: {fileID: 114046496755771620}
   m_Layer: 5
-  m_Name: CloneIcon (3)
+  m_Name: CloneIcon 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 222331555610635144}
   - component: {fileID: 114920190023963406}
   m_Layer: 5
-  m_Name: CloneIcon16
+  m_Name: CloneIcon 14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 222171580062479194}
   - component: {fileID: 114248026930425248}
   m_Layer: 5
-  m_Name: CloneIcon11
+  m_Name: CloneIcon 19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 222718549196467706}
   - component: {fileID: 114889207490843414}
   m_Layer: 5
-  m_Name: CloneIcon19
+  m_Name: CloneIcon 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 222703084244633104}
   - component: {fileID: 114167969456779904}
   m_Layer: 5
-  m_Name: CloneIcon10
+  m_Name: CloneIcon 20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 222441536538825712}
   - component: {fileID: 114941960575843596}
   m_Layer: 5
-  m_Name: CloneIcon (8)
+  m_Name: CloneIcon 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 222316151615937964}
   - component: {fileID: 114434843114717778}
   m_Layer: 5
-  m_Name: CloneIcon (4)
+  m_Name: CloneIcon 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 222309825897780088}
   - component: {fileID: 114690291787890978}
   m_Layer: 5
-  m_Name: CloneIcon13
+  m_Name: CloneIcon 17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 222491780513233780}
   - component: {fileID: 114661286421630422}
   m_Layer: 5
-  m_Name: CloneIcon15
+  m_Name: CloneIcon 15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1990,7 +1990,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2044,7 +2044,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 16
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2082,7 +2082,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 19
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2118,7 +2118,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2136,7 +2136,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 10
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2154,7 +2154,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 12
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2237,16 +2237,16 @@ RectTransform:
   - {fileID: 224192008240968418}
   - {fileID: 224037285236946200}
   - {fileID: 224034548971497456}
-  - {fileID: 224214664758700050}
-  - {fileID: 224627591665149820}
-  - {fileID: 224219912612106952}
-  - {fileID: 224909141687833536}
-  - {fileID: 224196043400728194}
-  - {fileID: 224037580308535788}
-  - {fileID: 224088797495123548}
-  - {fileID: 224543308544562194}
-  - {fileID: 224876117097777890}
   - {fileID: 224171156218860154}
+  - {fileID: 224876117097777890}
+  - {fileID: 224543308544562194}
+  - {fileID: 224088797495123548}
+  - {fileID: 224037580308535788}
+  - {fileID: 224196043400728194}
+  - {fileID: 224909141687833536}
+  - {fileID: 224219912612106952}
+  - {fileID: 224627591665149820}
+  - {fileID: 224214664758700050}
   m_Father: {fileID: 224108790902811840}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2266,7 +2266,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 17
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2320,7 +2320,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 11
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2413,7 +2413,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 18
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2449,7 +2449,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224508776277379920}
-  m_RootOrder: 13
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
