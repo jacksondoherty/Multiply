@@ -74,6 +74,9 @@ public class MyHud : NetworkBehaviour {
 				}
 			}
 		}
+		if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown (KeyCode.Q)) {
+			Application.Quit();
+		}
 	}
 
 	void OnGUI() {
@@ -101,6 +104,7 @@ public class MyHud : NetworkBehaviour {
 				// @TODO: put this in a more intuitive place
 				pauseText.text = "Preparing match...";
 				pauseText.enabled = true;
+				Cursor.lockState = CursorLockMode.None;
 
 				manager.StartMatchMaker ();
 				matchNameInput.text = manager.matchName;
