@@ -13,3 +13,7 @@ Turn/Aim with mouse
 Left-click to fire
 Right-click to throw donut
 Spacebar to multiply (clone yourself)
+
+* NOTE: if a player stands next to a wall, facing it and throws a donut,
+it will propel into the air.  This is funny but occasionally breaks the
+game - will fix when have time.
